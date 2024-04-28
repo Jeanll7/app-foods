@@ -1,9 +1,9 @@
-import Image from "next/image";
-
-export default function Home() {
+function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between">
+    <div className="flex w-full items-center justify-center">
       <h1>Tailwind</h1>
     </div>
   );
 }
+
+export default Home;
