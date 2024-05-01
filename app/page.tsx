@@ -10,7 +10,7 @@ function Home() {
       <Search />
       <CategoryList />
 
-      <div className="pt-6">
+      <div className="pt-2">
         <Image
           src="/promo-banner-01.png"
           alt="Até 30% de desconto em pizzas"
