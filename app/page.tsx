@@ -1,9 +1,7 @@
+import Header from "./_components/header";
+
 function Home() {
-  return (
-    <div className="flex w-full items-center justify-center">
-      <h1>Tailwind</h1>
-    </div>
-  );
+  return <Header />;
 }
 
 export default Home;
