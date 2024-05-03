@@ -1,16 +1,23 @@
-import { Product } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import Image from "next/image";
 import { calculateProductTotalPrice, formatCurrency } from "../_helpers/price";
 
 interface ProductItemProps {
-  product: Product;
+  product: Prisma.ProductGetPayload<{
+    include: {
+      restaurant: {
+        select: {
+          name: true;
+        };
+      };
+    };
+  }>;
 }
 
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
-    <div className="w-[150px] min-w-[150px] space-y-2">
-      {/* IMAGEM  */}
-      <div className="relative h-[150px] w-full">
+    <div className="w-[150px] space-y-2">
+      <div className="relative h-[150px] w-[150px]">
         <Image
           src={product.imageUrl}
           alt={product.name}
@@ -18,16 +25,19 @@ const ProductItem = ({ product }: ProductItemProps) => {
           className="rounded-lg object-cover shadow-md"
         />
 
-        {product.discountPercentage && (
-          <div className="absolute left-0 top-0 bg-red-500 px-2 py-[2px]">
-            <span>{product.discountPercentage}%</span>
+        {/* {product.discountPercentage && (
+          <div className="absolute left-2 top-2 flex items-center gap-[2px] rounded-full bg-primary px-2 py-[2px] text-white">
+            <ArrowDownIcon size={12} />
+            <span className="text-xs font-semibold">
+              {product.discountPercentage}%
+            </span>
           </div>
-        )}
+        )} */}
       </div>
 
       <div>
         <h2 className="truncate text-sm">{product.name}</h2>
-        <div className="items-center gap-1">
+        <div className="flex items-center gap-1">
           <h3 className="font-semibold">
             {formatCurrency(calculateProductTotalPrice(product))}
           </h3>
@@ -37,6 +47,9 @@ const ProductItem = ({ product }: ProductItemProps) => {
             </span>
           )}
         </div>
+        <span className="block text-xs text-muted-foreground">
+          {product.restaurant.name}
+        </span>
       </div>
     </div>
   );
