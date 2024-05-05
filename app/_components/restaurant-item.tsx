@@ -27,9 +27,13 @@ const RestaurantItem = ({ restaurant }: RestauranteItemProps) => {
 
         <Button
           size="icon"
-          className="absolute  right-2 top-1 rounded-full bg-gray-700"
+          className="absolute right-2 top-1 rounded-full bg-gray-700"
         >
-          <HeartIcon size={22} fill="white" />
+          <HeartIcon
+            size={22}
+            fill="white"
+            className="transition-all duration-300 hover:fill-red-500"
+          />
         </Button>
       </div>
       {/* TEXTO */}

@@ -2,11 +2,20 @@ import { Product } from "@prisma/client";
 
 export const calculateProductTotalPrice = (product: Product): number => {
   const price = Number(product.price);
-  const discountPercentage = product.discountPercentage || 0;
+  const discountPercentage = product.discountPercentage;
 
-  const discount = price * (discountPercentage / 100);
+  if (discountPercentage === 0) {
+    return price;
+  }
 
-  return price - discount;
+  const discount = (price * discountPercentage) / 100;
+  const totalPrice = price - discount;
+
+  console.log(
+    `O preço total do ${product.name} é ${formatCurrency(totalPrice)}`,
+  );
+
+  return totalPrice;
 };
 
 export const formatCurrency = (value: number): string => {
