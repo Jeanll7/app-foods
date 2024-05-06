@@ -9,6 +9,8 @@ interface RestauranteItemProps {
 }
 
 const RestaurantItem = ({ restaurant }: RestauranteItemProps) => {
+  const deliveryFee = Number(restaurant.deliveryFee);
+
   return (
     <div className="min-w-[266px] max-w-[266px] space-y-3">
       {/* IMAGEM */}
@@ -45,9 +47,9 @@ const RestaurantItem = ({ restaurant }: RestauranteItemProps) => {
           <div className="flex items-center gap-1">
             <BikeIcon className="text-primary" size={14} />
             <span className="text-xs text-muted-foreground">
-              {Number(restaurant.deliveryFee) === 0
+              {deliveryFee === 0
                 ? "Entrega grátis"
-                : formatCurrency(Number(restaurant.deliveryFee))}
+                : formatCurrency(deliveryFee)}
             </span>
           </div>
 

@@ -1,9 +1,9 @@
-const { PrismaClient } = require("@prisma/client");
+import { PrismaClient } from "@prisma/client";
 
 const prismaClient = new PrismaClient();
 
 const description =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec nisl lorem. Praesent pharetra, sapien ut fringilla malesuada, nisi felis ullamcorper ex, eu consectetur elit dolor sed dolor. Praesent orci mi, auctor aliquet semper vitae, volutpat quis augue. Cras porta sapien nec pharetra laoreet. Sed at velit sit amet mauris varius volutpat sit amet id mauris. Maecenas vitae mattis ante. Morbi nulla quam, sagittis at orci eu, scelerisque auctor neque.";
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec nisl lorem. Praesent pharetra, sapien ut fringilla malesuada, nisi felis ullamcorper ex, eu consectetur elit dolor sed dolor. Praesent orci mi, auctor aliquet semper vitae, volutpat quis augue. Cras porta sapien nec pharetra laoreet. Sed at velit.";
 
 const createBurguers = async (
   desertsCategoryId: string,
@@ -312,7 +312,7 @@ const createPizzas = async (
       {
         name: "Hawaiian Pizza",
         price: 45,
-        description: "A delicious hawaiian pizza",
+        description: description,
         discountPercentage: 5,
         imageUrl:
           "https://utfs.io/f/0bb7a869-f369-4506-94ea-6cc23c8dd92f-berpu9.png",
@@ -763,6 +763,34 @@ const createBrazilian = async (
   }
 };
 
+// const createJuices = async (restaurantId: string, categoryId: string) => {
+//   await prismaClient.restaurant.update({
+//     where: {
+//       id: restaurantId,
+//     },
+//     data: {
+//       categories: {
+//         connect: {
+//           id: categoryId,
+//         },
+//       },
+//     },
+//   });
+
+// const createDesserts = async (restaurantId: string, categoryId: string) => {
+//   await prismaClient.restaurant.update({
+//     where: {
+//       id: restaurantId,
+//     },
+//     data: {
+//       categories: {
+//         connect: {
+//           id: categoryId,
+//         },
+//       },
+//     },
+//   });
+
 const createDeserts = async (restaurantId: string, categoryId: string) => {
   await prismaClient.restaurant.update({
     where: {
@@ -1065,3 +1093,21 @@ main()
   .finally(async () => {
     await prismaClient.$disconnect();
   });
+
+// const createDesserts = async (restaurantId: string, categoryId: string) => {
+//   // Function logic remains the same...
+// };
+
+// const createJuices = async (restaurantId: string, categoryId: string) => {
+//   // Function logic remains the same...
+// };
+
+// for (const item of burguerRestaurants) {
+//   const restaurant = await prismaClient.restaurant.create({
+//     data: item,
+//   });
+
+//   await createDesserts(restaurant.id, desertsCategoryId); // Corrected function name
+//   await createJuices(restaurant.id, juicesCategoryId);
+//   // Rest of the logic remains the same...
+// }
